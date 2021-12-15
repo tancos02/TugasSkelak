@@ -3,6 +3,9 @@ import pandas as pd
 import numpy as np
 import altair as alt
 
+df = pd.read_csv('produksi_minyak_mentah.csv')
+df_js = pd.read_json('kode_negara_lengkap.json')
+
 nation_name = df_js['name']
 
 with st.container():
