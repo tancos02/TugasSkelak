@@ -95,7 +95,7 @@ with col2 :
                 max_nat_code = str(max_nat["kode_negara"][0])
                 nat_info = df_js.loc[df_js['alpha-3'] == max_nat_code]
                 st.write("Informasi negara dengan jumlah produksi terbesar pada tahun", year)
-                if(len(nat_info > 0)) :
+                if(len(nat_info) > 0) :
                     st.write("Nama negara : ", str(nat_info['name'][0]))
                     st.write("Kode negara : ", str(max_nat_code))
                     st.write("Region      : ", str(nat_info['region'][0]))
@@ -107,7 +107,7 @@ with col2 :
                 max_nat_all_year_code = str(max_nat["kode_negara"][0])
                 nat_all_year_info = df_js.loc[df_js['alpha-3'] == max_nat_all_year_code]
                 st.write("Informasi negara dengan jumlah produksi terbesar keseluruhan tahun")
-                if(len(nat_all_year_info > 0)) :
+                if(len(nat_all_year_info) > 0) :
                     st.write("Nama negara : ", str(nat_all_year_info['name'][0]))
                     st.write("Kode negara : ", str(max_nat_all_year_code))
                     st.write("Region      : ", str(nat_all_year_info['region'][0]))
