@@ -80,7 +80,7 @@ with col2 :
         df_year.sort_values(by=['produksi'], ascending=False, inplace=True)
         df_year.reset_index(drop=True, inplace=True)
         if st.button('Lihat info 1'):
-            if(len(result2) > 0) :
+            if(len(df_year) > 0) :
                 max_nat = df_year.head(1)
                 max_nat_code = str(max_nat["kode_negara"][0])
                 nat_info = df_js.loc[df_js['alpha-3'] == max_nat_code]
