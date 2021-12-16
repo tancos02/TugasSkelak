@@ -30,13 +30,14 @@ with col1 :
             )
             st.altair_chart(chart, use_container_width=True)
     with container2 :
-        num_nation = st.number_input('Masukkan jumlah negara yang ditampilkan')
-        year = st.number_input('Masukkan tahun')
+        num_nation = int(st.number_input('Masukkan jumlah negara yang ditampilkan'))
+        year = int(st.number_input('Masukkan tahun'))
         if st.button('Lihat grafik b'):
             result = df.loc[df['tahun'] == year]
             result.sort_values(by=['produksi'], ascending=False, inplace=True)
             result.reset_index(drop=True, inplace=True)
-            result = result.head(num_nation)
+            if(len(result)>num_nation) :
+                result = result.head(num_nation)
             bars = alt.Chart(result).mark_bar().encode(
                 x='produksi',
                 y='kode_negara'
