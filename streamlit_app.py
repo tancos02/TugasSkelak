@@ -76,13 +76,14 @@ with col2 :
             )
             st.altair_chart(bars2, use_container_width=True)
     with container4 :
-        if(len(result2 > 0)) :
-            with col3 :
-                max_nat = result2.head(1)
-                max_nat_code = str(max_nat["kode_negara"][0])
-                nat_info = df_js.loc[df_js['alpha-3'] == max_nat_code]
-                st.write("Informasi negara dengan jumlah produksi terbesar pada tahun", year)
-                st.write("Nama negara : ", str(nat_info['name'][0]))
-                st.write("Kode negara : ", str(max_nat_code))
-                st.write("Region      : ", str(nat_info['region'][0]))
-                st.write("Sub-region  : ", str(nat_info['sub-region'][0]))
+        with col3 :
+            if st.button('Lihat info 1'):
+                if(len(result2 > 0)) :
+                    max_nat = result2.head(1)
+                    max_nat_code = str(max_nat["kode_negara"][0])
+                    nat_info = df_js.loc[df_js['alpha-3'] == max_nat_code]
+                    st.write("Informasi negara dengan jumlah produksi terbesar pada tahun", year)
+                    st.write("Nama negara : ", str(nat_info['name'][0]))
+                    st.write("Kode negara : ", str(max_nat_code))
+                    st.write("Region      : ", str(nat_info['region'][0]))
+                    st.write("Sub-region  : ", str(nat_info['sub-region'][0]))
