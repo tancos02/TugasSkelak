@@ -104,7 +104,7 @@ with col2 :
                     st.write("Informasi negara kurang lengkap selain kode negara")
                     st.write("Kode negara : ", str(max_nat_code))
                 max_nat_all_year = df2.head(1)
-                max_nat_all_year_code = str(max_nat["kode_negara"][0])
+                max_nat_all_year_code = str(max_nat_all_year["kode_negara"][0])
                 nat_all_year_info = df_js.loc[df_js['alpha-3'] == max_nat_all_year_code]
                 nat_all_year_info.reset_index(drop=True, inplace=True)
                 st.write("Informasi negara dengan jumlah produksi terbesar keseluruhan tahun")
@@ -136,7 +136,7 @@ with col2 :
                     st.write("Informasi negara kurang lengkap selain kode negara")
                     st.write("Kode negara : ", str(min_nat_code))
                 min_nat_all_year = df2.head(1)
-                min_nat_all_year_code = str(min_nat["kode_negara"][0])
+                min_nat_all_year_code = str(min_nat_all_year["kode_negara"][0])
                 nat_all_year_info = df_js.loc[df_js['alpha-3'] == min_nat_all_year_code]
                 nat_all_year_info.reset_index(drop=True, inplace=True)
                 st.write("Informasi negara dengan jumlah produksi terkecil keseluruhan tahun")
