@@ -43,13 +43,5 @@ with col1 :
                 x='produksi',
                 y='kode_negara'
             )
-            text = bars.mark_text(
-                align='left',
-                baseline='middle',
-                dx=3
-            ).encode(
-                text='produksi'
-            )
-            (bars + text).properties(height=900)
             st.altair_chart(bars, use_container_width=True)
 # with col2 :
