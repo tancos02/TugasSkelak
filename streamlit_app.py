@@ -38,16 +38,17 @@ with col1 :
             result.reset_index(drop=True, inplace=True)
             if(len(result)>num_nation) :
                 result = result.head(num_nation)
-            bars = alt.Chart(result).mark_bar().encode(
-                x='produksi',
-                y='kode_negara'
-            )
-            text = bars.mark_text(
-                align='left',
-                baseline='middle',
-                dx=3
-            ).encode(
-                text='produksi'
-            )
-            (bars + text).properties(height=900)
+            result
+#             bars = alt.Chart(result).mark_bar().encode(
+#                 x='produksi',
+#                 y='kode_negara'
+#             )
+#             text = bars.mark_text(
+#                 align='left',
+#                 baseline='middle',
+#                 dx=3
+#             ).encode(
+#                 text='produksi'
+#             )
+#             (bars + text).properties(height=900)
 # with col2 :
