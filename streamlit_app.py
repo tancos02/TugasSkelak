@@ -9,13 +9,15 @@ df_js = pd.read_json('kode_negara_lengkap.json')
 nation_name = df_js['name']
 
 col1, col2= st.columns(2)
+container1 = st.container()
+container2 = st.container()
 with col1 :
-    with st.container():
+    with container1:
         option = st.selectbox(
             "Nation",
             nation_name
         )
-        if st.button('Lihat grafik'):
+        if st.button('Lihat grafik a'):
             choosen_nation = df_js.loc[df_js['name'] == option]
             choosen_nation.reset_index(drop=True, inplace=True)
             nation_code = str(choosen_nation['alpha-3'][0])
@@ -27,10 +29,10 @@ with col1 :
                 y='produksi'
             )
             st.altair_chart(chart, use_container_width=True)
-    with st.container():
+    with container2 :
         num_nation = st.number_input('Masukkan jumlah negara yang ditampilkan')
         year = st.number_input('Masukkan tahun')
-        if st.button('Lihat grafik'):
+        if st.button('Lihat grafik b'):
             result = df.loc[df['tahun'] == year]
             result.sort_values(by=['produksi'], ascending=False, inplace=True)
             result.reset_index(drop=True, inplace=True)
@@ -47,3 +49,4 @@ with col1 :
                 text='produksi'
             )
             (bars + text).properties(height=900)
+# with col2 :
