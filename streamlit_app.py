@@ -147,3 +147,37 @@ with col2 :
                 else :
                     st.write("Informasi negara kurang lengkap selain kode negara")
                     st.write("Kode negara : ", str(min_nat_all_year_code))
+        if st.button('Lihat info 3'):
+            df2 = df.loc[df['produksi'] == 0]
+            df2.sort_values(by=['kode_negara'], inplace=True)
+            df2.reset_index(drop=True, inplace=True)
+            df2_uniq = df2.kode_negara.unique()
+            df_year = df2.loc[df2['tahun'] == year]
+            df_year.sort_values(by=['kode_negara'], inplace=True)
+            df_year.reset_index(drop=True, inplace=True)
+            df_year_uniq = df_year.kode_negara.unique()
+            if(len(df_year) > 0) :
+                res = [[0, 0, 0, 0] for i in range(len(df_year_uniq))]
+                for i in range(len(res)) :
+                    code = str(df_year_uniq[i])
+                    nat_info = df_js.loc[df_js['alpha-3'] == code]
+                    nat_info.reset_index(drop=True, inplace=True)
+                    res[i][0] = str(nat_info['name'][0])
+                    res[i][1] = str(df_year_uniq[i])
+                    res[i][2] = str(nat_info['region'][0])
+                    res[i][3] = str(nat_info['sub-region'][0])
+                st.write("Informasi negara dengan jumlah produksi nol pada tahun ", str(year))
+                res = pd.DataFrame(res, columns=['Nama negara', 'Kode negara', 'Region ', 'Sub-region'])
+                res
+                res2 = [[0, 0, 0, 0] for i in range(len(df2_uniq))]
+                for i in range(len(res2)) :
+                    code = str(df2_uniq[i])
+                    nat_info = df_js.loc[df_js['alpha-3'] == code]
+                    nat_info.reset_index(drop=True, inplace=True)
+                    res2[i][0] = str(nat_info['name'][0])
+                    res2[i][1] = str(df2_uniq[i])
+                    res2[i][2] = str(nat_info['region'][0])
+                    res2[i][3] = str(nat_info['sub-region'][0])
+                st.write("Informasi negara dengan jumlah produksi nol pada seluruh tahun ")
+                res2 = pd.DataFrame(res2, columns=['Nama negara', 'Kode negara', 'Region ', 'Sub-region'])
+                res2
