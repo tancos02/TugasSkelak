@@ -78,7 +78,7 @@ with col2 :
     with container4 :
         with col3 :
             if st.button('Lihat info 1'):
-                if(len(result2 > 0)) :
+                if(len(result2) > 0) :
                     max_nat = result2.head(1)
                     max_nat_code = str(max_nat["kode_negara"][0])
                     nat_info = df_js.loc[df_js['alpha-3'] == max_nat_code]
