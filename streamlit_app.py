@@ -15,34 +15,35 @@ with col1 :
             "Nation",
             nation_name
         )
-        choosen_nation = df_js.loc[df_js['name'] == option]
-        choosen_nation.reset_index(drop=True, inplace=True)
-        nation_code = str(choosen_nation['alpha-3'][0])
-        result = df.loc[df['kode_negara'] == nation_code]
-        result = result[['tahun', 'produksi']]
-        result.reset_index(drop=True, inplace=True)
-        chart = alt.Chart(result).mark_line().encode(
-            x='tahun',
-            y='produksi'
-        )
-        st.altair_chart(chart, use_container_width=True)
+        if st.button('Lihat grafik'):
+            choosen_nation = df_js.loc[df_js['name'] == option]
+            choosen_nation.reset_index(drop=True, inplace=True)
+            nation_code = str(choosen_nation['alpha-3'][0])
+            result = df.loc[df['kode_negara'] == nation_code]
+            result = result[['tahun', 'produksi']]
+            result.reset_index(drop=True, inplace=True)
+            chart = alt.Chart(result).mark_line().encode(
+                x='tahun',
+                y='produksi'
+            )
+            st.altair_chart(chart, use_container_width=True)
     with st.container():
         num_nation = st.number_input('Masukkan jumlah negara yang ditampilkan')
         year = st.number_input('Masukkan tahun')
-        result = df.loc[df['tahun'] == year]
-        result.sort_values(by=['produksi'], ascending=False, inplace=True)
-        result.reset_index(drop=True, inplace=True)
-        result = result.head(num_nation)
-        bars = alt.Chart(result).mark_bar().encode(
-            x='produksi',
-            y='kode_negara'
-        )
-        text = bars.mark_text(
-            align='left',
-            baseline='middle',
-            dx=3
-        ).encode(
-            text='produksi'
-        )
-        (bars + text).properties(height=900)
-# with col2 :
+        if st.button('Lihat grafik'):
+            result = df.loc[df['tahun'] == year]
+            result.sort_values(by=['produksi'], ascending=False, inplace=True)
+            result.reset_index(drop=True, inplace=True)
+            result = result.head(num_nation)
+            bars = alt.Chart(result).mark_bar().encode(
+                x='produksi',
+                y='kode_negara'
+            )
+            text = bars.mark_text(
+                align='left',
+                baseline='middle',
+                dx=3
+            ).encode(
+                text='produksi'
+            )
+            (bars + text).properties(height=900)
