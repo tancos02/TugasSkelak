@@ -8,9 +8,28 @@ df_js = pd.read_json('kode_negara_lengkap.json')
 
 nation_name = df_js['name']
 
+df.sort_values(by=['kode_negara'], inplace=True)
+df.reset_index(drop=True, inplace=True)
+sum_produksi = [[0, 0] for i in range(len(df.kode_negara.unique()))]
+uniq = df.kode_negara.unique()
+for i in range(len(sum_produksi)) :
+    sum_produksi[i][0] = uniq[i]
+j = 0
+for i in range(len(df)) :
+    if(sum_produksi[j][0] == df['kode_negara'][i]) :
+        sum_produksi[j][1] += df['produksi'][i]
+    else :
+        j += 1
+        sum_produksi[j][1] += df['produksi'][i]
+sum_produksi = pd.DataFrame(sum_produksi, columns=['kode_negara','total_produksi'])
+sum_produksi.sort_values(by=['total_produksi'], ascending=False, inplace=True)
+sum_produksi.reset_index(drop=True, inplace=True)
+    
 col1, col2= st.columns(2)
 container1 = st.container()
 container2 = st.container()
+container3 = st.container()
+container4 = st.container()
 with col1 :
     with container1:
         option = st.selectbox(
@@ -21,10 +40,10 @@ with col1 :
             choosen_nation = df_js.loc[df_js['name'] == option]
             choosen_nation.reset_index(drop=True, inplace=True)
             nation_code = str(choosen_nation['alpha-3'][0])
-            result = df.loc[df['kode_negara'] == nation_code]
-            result = result[['tahun', 'produksi']]
-            result.reset_index(drop=True, inplace=True)
-            chart = alt.Chart(result).mark_line().encode(
+            result1 = df.loc[df['kode_negara'] == nation_code]
+            result1 = result1[['tahun', 'produksi']]
+            result1.reset_index(drop=True, inplace=True)
+            chart = alt.Chart(result1).mark_line().encode(
                 x='tahun',
                 y='produksi'
             )
@@ -33,15 +52,24 @@ with col1 :
         num_nation = int(st.number_input('Masukkan jumlah negara yang ditampilkan'))
         year = int(st.number_input('Masukkan tahun'))
         if st.button('Lihat grafik b'):
-            result = df.loc[df['tahun'] == year]
-            result.sort_values(by=['produksi'], ascending=False, inplace=True)
-            result.reset_index(drop=True, inplace=True)
-            if(len(result)>num_nation) :
-                result = result.head(num_nation)
-            result
-            bars = alt.Chart(result).mark_bar().encode(
+            result2 = df.loc[df['tahun'] == year]
+            result2.sort_values(by=['produksi'], ascending=False, inplace=True)
+            result2.reset_index(drop=True, inplace=True)
+            if(len(result2)>num_nation) :
+                result2 = result2.head(num_nation)
+            bars1 = alt.Chart(result2).mark_bar().encode(
                 x='produksi',
                 y='kode_negara'
             )
-            st.altair_chart(bars, use_container_width=True)
-# with col2 :
+            st.altair_chart(bars1, use_container_width=True)
+with col2 :
+    with container3 :
+        nation_count = int(st.number_input('Masukkan jumlah negara yang ingin ditampilkan'))
+        if st.button('Lihat grafik c'):
+            if(len(sum_produksi) >= nation_count) :
+                result3 = sum_produksi.head(nation_count)
+            bars2 = alt.Chart(result3).mark_bar().encode(
+                x='total_produksi',
+                y='kode_negara'
+            )
+            st.altair_chart(bars2, use_container_width=True)
