@@ -97,10 +97,9 @@ with col2 :
                 nat_info.reset_index(drop=True, inplace=True)
                 st.write("Informasi negara dengan jumlah produksi terbesar pada tahun", str(year))
                 if(len(nat_info) > 0) :
-                    st.write("Nama negara : ", str(nat_info['name'][0]))
-                    st.write("Kode negara : ", str(max_nat_code))
-                    st.write("Region      : ", str(nat_info['region'][0]))
-                    st.write("Sub-region  : ", str(nat_info['sub-region'][0]))
+                    res = [str(nat_info['name'][0]), str(max_nat_code), str(nat_info['region'][0]), str(nat_info['sub-region'][0])]
+                    res = pd.DataFrame(res, columns=['Nama negara', 'Kode negara', 'Region ', 'Sub-region'])
+                    res
                 else :
                     st.write("Informasi negara kurang lengkap selain kode negara")
                     st.write("Kode negara : ", str(max_nat_code))
@@ -110,10 +109,9 @@ with col2 :
                 nat_all_year_info.reset_index(drop=True, inplace=True)
                 st.write("Informasi negara dengan jumlah produksi terbesar keseluruhan tahun")
                 if(len(nat_all_year_info) > 0) :
-                    st.write("Nama negara : ", str(nat_all_year_info['name'][0]))
-                    st.write("Kode negara : ", str(max_nat_all_year_code))
-                    st.write("Region      : ", str(nat_all_year_info['region'][0]))
-                    st.write("Sub-region  : ", str(nat_all_year_info['sub-region'][0]))
+                    res2 = [str(nat_all_year_info['name'][0]), str(max_nat_all_year_code), str(nat_all_year_info['region'][0]), str(nat_all_year_info['sub-region'][0])]
+                    res2 = pd.DataFrame(res, columns=['Nama negara', 'Kode negara', 'Region ', 'Sub-region'])
+                    res2
                 else :
                     st.write("Informasi negara kurang lengkap selain kode negara")
                     st.write("Kode negara : ", str(max_nat_all_year_code))
