@@ -66,8 +66,8 @@ with col1 :
                 result2 = result2.head(num_nation)
             result2
             bars1 = alt.Chart(result2).mark_bar().encode(
-                x='produksi',
-                y='kode_negara'
+                x='kode_negara',
+                y='produksi'
             )
             st.altair_chart(bars1, use_container_width=True)
 with col2 :
@@ -78,8 +78,8 @@ with col2 :
                 result3 = sum_produksi.head(nation_count)
             result3
             bars2 = alt.Chart(result3).mark_bar().encode(
-                x='total_produksi',
-                y='kode_negara'
+                x='kode_negara',
+                y='total_produksi'
             )
             st.altair_chart(bars2, use_container_width=True)
     with container4 :
