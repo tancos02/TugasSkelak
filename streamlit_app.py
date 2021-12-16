@@ -39,16 +39,17 @@ with col1 :
             if(len(result)>num_nation) :
                 result = result.head(num_nation)
             result
-#             bars = alt.Chart(result).mark_bar().encode(
-#                 x='produksi',
-#                 y='kode_negara'
-#             )
-#             text = bars.mark_text(
-#                 align='left',
-#                 baseline='middle',
-#                 dx=3
-#             ).encode(
-#                 text='produksi'
-#             )
-#             (bars + text).properties(height=900)
+            bars = alt.Chart(result).mark_bar().encode(
+                x='produksi',
+                y='kode_negara'
+            )
+            text = bars.mark_text(
+                align='left',
+                baseline='middle',
+                dx=3
+            ).encode(
+                text='produksi'
+            )
+            (bars + text).properties(height=900)
+            st.altair_chart(bars, use_container_width=True)
 # with col2 :
