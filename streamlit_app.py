@@ -6,6 +6,13 @@ import altair as alt
 df = pd.read_csv('produksi_minyak_mentah.csv')
 df_js = pd.read_json('kode_negara_lengkap.json')
 
+arr = []
+for i in list(df['kode_negara']) :
+    if i not in list(df_js['alpha-3']) :
+        arr.append(i)
+for i in arr :
+    df = df[df.kode_negara != i]
+    
 nation_name = df_js['name']
 
 df.sort_values(by=['kode_negara'], inplace=True)
