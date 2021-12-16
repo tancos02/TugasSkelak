@@ -110,7 +110,7 @@ with col2 :
                 st.write("Informasi negara dengan jumlah produksi terbesar keseluruhan tahun")
                 if(len(nat_all_year_info) > 0) :
                     res2 = [[str(nat_all_year_info['name'][0]), str(max_nat_all_year_code), str(nat_all_year_info['region'][0]), str(nat_all_year_info['sub-region'][0])]]
-                    res2 = pd.DataFrame(res, columns=['Nama negara', 'Kode negara', 'Region ', 'Sub-region'])
+                    res2 = pd.DataFrame(res2, columns=['Nama negara', 'Kode negara', 'Region ', 'Sub-region'])
                     res2
                 else :
                     st.write("Informasi negara kurang lengkap selain kode negara")
@@ -142,7 +142,7 @@ with col2 :
                 st.write("Informasi negara dengan jumlah produksi terkecil keseluruhan tahun")
                 if(len(nat_all_year_info) > 0) :
                     res2 = [[str(nat_all_year_info['name'][0]), str(min_nat_all_year_code), str(nat_all_year_info['region'][0]), str(nat_all_year_info['sub-region'][0])]]
-                    res2 = pd.DataFrame(res, columns=['Nama negara', 'Kode negara', 'Region ', 'Sub-region'])
+                    res2 = pd.DataFrame(res2, columns=['Nama negara', 'Kode negara', 'Region ', 'Sub-region'])
                     res2
                 else :
                     st.write("Informasi negara kurang lengkap selain kode negara")
