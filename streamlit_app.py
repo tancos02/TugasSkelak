@@ -115,3 +115,35 @@ with col2 :
                 else :
                     st.write("Informasi negara kurang lengkap selain kode negara")
                     st.write("Kode negara : ", str(max_nat_all_year_code))
+        if st.button('Lihat info 2'):
+            df2 = df.loc[df['produksi'] > 0]
+            df2.sort_values(by=['produksi'], inplace=True)
+            df_year.reset_index(drop=True, inplace=True)
+            df_year = df2.loc[df['tahun'] == year]
+            df_year.sort_values(by=['produksi'], inplace=True)
+            df_year.reset_index(drop=True, inplace=True)
+            if(len(df_year) > 0) :
+                min_nat = df_year.head(1)
+                min_nat_code = str(min_nat["kode_negara"][0])
+                nat_info = df_js.loc[df_js['alpha-3'] == min_nat_code]
+                nat_info.reset_index(drop=True, inplace=True)
+                st.write("Informasi negara dengan jumlah produksi terkecil pada tahun", str(year))
+                if(len(nat_info) > 0) :
+                    res = [[str(nat_info['name'][0]), str(min_nat_code), str(nat_info['region'][0]), str(nat_info['sub-region'][0])]]
+                    res = pd.DataFrame(res, columns=['Nama negara', 'Kode negara', 'Region ', 'Sub-region'])
+                    res
+                else :
+                    st.write("Informasi negara kurang lengkap selain kode negara")
+                    st.write("Kode negara : ", str(min_nat_code))
+                min_nat_all_year = df2.head(1)
+                min_nat_all_year_code = str(min_nat["kode_negara"][0])
+                nat_all_year_info = df_js.loc[df_js['alpha-3'] == min_nat_all_year_code]
+                nat_all_year_info.reset_index(drop=True, inplace=True)
+                st.write("Informasi negara dengan jumlah produksi terkecil keseluruhan tahun")
+                if(len(nat_all_year_info) > 0) :
+                    res2 = [[str(nat_all_year_info['name'][0]), str(min_nat_all_year_code), str(nat_all_year_info['region'][0]), str(nat_all_year_info['sub-region'][0])]]
+                    res2 = pd.DataFrame(res, columns=['Nama negara', 'Kode negara', 'Region ', 'Sub-region'])
+                    res2
+                else :
+                    st.write("Informasi negara kurang lengkap selain kode negara")
+                    st.write("Kode negara : ", str(min_nat_all_year_code))
