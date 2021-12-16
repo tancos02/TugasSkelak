@@ -57,6 +57,7 @@ with col1 :
             result2.reset_index(drop=True, inplace=True)
             if(len(result2)>num_nation) :
                 result2 = result2.head(num_nation)
+            result2
             bars1 = alt.Chart(result2).mark_bar().encode(
                 x='produksi',
                 y='kode_negara'
@@ -68,6 +69,7 @@ with col2 :
         if st.button('Lihat grafik c'):
             if(len(sum_produksi) >= nation_count) :
                 result3 = sum_produksi.head(nation_count)
+            result3
             bars2 = alt.Chart(result3).mark_bar().encode(
                 x='total_produksi',
                 y='kode_negara'
