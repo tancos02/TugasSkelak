@@ -79,6 +79,9 @@ with col2 :
         df_year = df.loc[df['tahun'] == year]
         df_year.sort_values(by=['produksi'], ascending=False, inplace=True)
         df_year.reset_index(drop=True, inplace=True)
+        df2 = df
+        df2.sort_values(by=['produksi'], ascending=False, inplace=True)
+        df_year.reset_index(drop=True, inplace=True)
         if st.button('Lihat info 1'):
             if(len(df_year) > 0) :
                 max_nat = df_year.head(1)
@@ -93,3 +96,15 @@ with col2 :
                 else :
                     st.write("Informasi negara kurang lengkap selain kode negara")
                     st.write("Kode negara : ", str(max_nat_code))
+                max_nat_all_year = df2.head(1)
+                max_nat_all_year_code = str(max_nat["kode_negara"][0])
+                nat_all_year_info = df_js.loc[df_js['alpha-3'] == max_nat_all_year_code]
+                st.write("Informasi negara dengan jumlah produksi terbesar keseluruhan tahun")
+                if(len(nat_all_year_info > 0)) :
+                    st.write("Nama negara : ", str(nat_all_year_info['name'][0]))
+                    st.write("Kode negara : ", str(max_nat_all_year_code))
+                    st.write("Region      : ", str(nat_all_year_info['region'][0]))
+                    st.write("Sub-region  : ", str(nat_all_year_info['sub-region'][0]))
+                else :
+                    st.write("Informasi negara kurang lengkap selain kode negara")
+                    st.write("Kode negara : ", str(max_nat_all_year_code))
