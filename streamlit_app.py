@@ -76,9 +76,12 @@ with col2 :
             )
             st.altair_chart(bars2, use_container_width=True)
     with container4 :
+        df_year = df.loc[df['tahun'] == year]
+        df_year.sort_values(by=['produksi'], ascending=False, inplace=True)
+        df_year.reset_index(drop=True, inplace=True)
         if st.button('Lihat info 1'):
             if(len(result2) > 0) :
-                max_nat = result2.head(1)
+                max_nat = df_year.head(1)
                 max_nat_code = str(max_nat["kode_negara"][0])
                 nat_info = df_js.loc[df_js['alpha-3'] == max_nat_code]
                 st.write("Informasi negara dengan jumlah produksi terbesar pada tahun", year)
