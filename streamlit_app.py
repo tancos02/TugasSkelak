@@ -94,24 +94,26 @@ with col2 :
                 max_nat = df_year.head(1)
                 max_nat_code = str(max_nat["kode_negara"][0])
                 nat_info = df_js.loc[df_js['alpha-3'] == max_nat_code]
-                st.write("Informasi negara dengan jumlah produksi terbesar pada tahun", year)
-                if(len(nat_info) > 0) :
-                    st.write("Nama negara : ", str(nat_info['name'][0]))
-                    st.write("Kode negara : ", str(max_nat_code))
-                    st.write("Region      : ", str(nat_info['region'][0]))
-                    st.write("Sub-region  : ", str(nat_info['sub-region'][0]))
-                else :
-                    st.write("Informasi negara kurang lengkap selain kode negara")
-                    st.write("Kode negara : ", str(max_nat_code))
+                st.write("Informasi negara dengan jumlah produksi terbesar pada tahun", str(year))
+                nat_info
+#                 if(len(nat_info) > 0) :
+#                     st.write("Nama negara : ", str(nat_info['name'][0]))
+#                     st.write("Kode negara : ", str(max_nat_code))
+#                     st.write("Region      : ", str(nat_info['region'][0]))
+#                     st.write("Sub-region  : ", str(nat_info['sub-region'][0]))
+#                 else :
+#                     st.write("Informasi negara kurang lengkap selain kode negara")
+#                     st.write("Kode negara : ", str(max_nat_code))
                 max_nat_all_year = df2.head(1)
                 max_nat_all_year_code = str(max_nat["kode_negara"][0])
                 nat_all_year_info = df_js.loc[df_js['alpha-3'] == max_nat_all_year_code]
                 st.write("Informasi negara dengan jumlah produksi terbesar keseluruhan tahun")
-                if(len(nat_all_year_info) > 0) :
-                    st.write("Nama negara : ", str(nat_all_year_info['name'][0]))
-                    st.write("Kode negara : ", str(max_nat_all_year_code))
-                    st.write("Region      : ", str(nat_all_year_info['region'][0]))
-                    st.write("Sub-region  : ", str(nat_all_year_info['sub-region'][0]))
-                else :
-                    st.write("Informasi negara kurang lengkap selain kode negara")
-                    st.write("Kode negara : ", str(max_nat_all_year_code))
+                nat_all_year_info
+#                 if(len(nat_all_year_info) > 0) :
+#                     st.write("Nama negara : ", str(nat_all_year_info['name'][0]))
+#                     st.write("Kode negara : ", str(max_nat_all_year_code))
+#                     st.write("Region      : ", str(nat_all_year_info['region'][0]))
+#                     st.write("Sub-region  : ", str(nat_all_year_info['sub-region'][0]))
+#                 else :
+#                     st.write("Informasi negara kurang lengkap selain kode negara")
+#                     st.write("Kode negara : ", str(max_nat_all_year_code))
