@@ -88,7 +88,7 @@ with col2 :
         df_year.reset_index(drop=True, inplace=True)
         df2 = df
         df2.sort_values(by=['produksi'], ascending=False, inplace=True)
-        df_year.reset_index(drop=True, inplace=True)
+        df2.reset_index(drop=True, inplace=True)
         if st.button('Lihat info 1'):
             if(len(df_year) > 0) :
                 max_nat = df_year.head(1)
@@ -118,8 +118,8 @@ with col2 :
         if st.button('Lihat info 2'):
             df2 = df.loc[df['produksi'] > 0]
             df2.sort_values(by=['produksi'], inplace=True)
-            df_year.reset_index(drop=True, inplace=True)
-            df_year = df2.loc[df['tahun'] == year]
+            df2.reset_index(drop=True, inplace=True)
+            df_year = df2.loc[df2['tahun'] == year]
             df_year.sort_values(by=['produksi'], inplace=True)
             df_year.reset_index(drop=True, inplace=True)
             if(len(df_year) > 0) :
