@@ -25,7 +25,7 @@ sum_produksi = pd.DataFrame(sum_produksi, columns=['kode_negara','total_produksi
 sum_produksi.sort_values(by=['total_produksi'], ascending=False, inplace=True)
 sum_produksi.reset_index(drop=True, inplace=True)
     
-col1, col2= st.columns(2)
+col1, col2, col3, col4, col5 = st.columns(5)
 container1 = st.container()
 container2 = st.container()
 container3 = st.container()
