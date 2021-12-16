@@ -25,7 +25,7 @@ sum_produksi = pd.DataFrame(sum_produksi, columns=['kode_negara','total_produksi
 sum_produksi.sort_values(by=['total_produksi'], ascending=False, inplace=True)
 sum_produksi.reset_index(drop=True, inplace=True)
     
-col1, col2, col3, col4, col5 = st.columns(5)
+col1, col2 = st.columns(2)
 container1 = st.container()
 container2 = st.container()
 container3 = st.container()
@@ -76,14 +76,13 @@ with col2 :
             )
             st.altair_chart(bars2, use_container_width=True)
     with container4 :
-        with col3 :
-            if st.button('Lihat info 1'):
-                if(len(result2) > 0) :
-                    max_nat = result2.head(1)
-                    max_nat_code = str(max_nat["kode_negara"][0])
-                    nat_info = df_js.loc[df_js['alpha-3'] == max_nat_code]
-                    st.write("Informasi negara dengan jumlah produksi terbesar pada tahun", year)
-                    st.write("Nama negara : ", str(nat_info['name'][0]))
-                    st.write("Kode negara : ", str(max_nat_code))
-                    st.write("Region      : ", str(nat_info['region'][0]))
-                    st.write("Sub-region  : ", str(nat_info['sub-region'][0]))
+        if st.button('Lihat info 1'):
+            if(len(result2) > 0) :
+                max_nat = result2.head(1)
+                max_nat_code = str(max_nat["kode_negara"][0])
+                nat_info = df_js.loc[df_js['alpha-3'] == max_nat_code]
+                st.write("Informasi negara dengan jumlah produksi terbesar pada tahun", year)
+                st.write("Nama negara : ", str(nat_info['name'][0]))
+                st.write("Kode negara : ", str(max_nat_code))
+                st.write("Region      : ", str(nat_info['region'][0]))
+                st.write("Sub-region  : ", str(nat_info['sub-region'][0]))
